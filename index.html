@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oscar Olivares | Servidor Web Nginx + Docker</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #090d16;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(16, 185, 129, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 40%);
+      color: #f8fafc;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      border-radius: 24px;
+      padding: 48px 42px;
+      max-width: 680px;
+      width: 100%;
+      text-align: left;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #10b981, #06b6d4);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 185, 129, 0.12);
+      color: #34d399;
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10b981;
+    }
+
+    .header-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .icon {
+      font-size: 46px;
+      background: rgba(6, 182, 212, 0.12);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #ffffff, #67e8f9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+
+    p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      margin-bottom: 28px;
+      color: #cbd5e1;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .tech-pill {
+      background: #1e293b;
+      color: #e2e8f0;
+      font-size: 0.85rem;
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      font-family: 'Consolas', monospace;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .button {
+      display: inline-block;
+      background: linear-gradient(135deg, #10b981, #06b6d4);
+      color: #06281e;
+      padding: 14px 30px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.98rem;
+      transition: all 0.25s ease;
+      box-shadow: 0 10px 20px -5px rgba(16, 185, 129, 0.35);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 25px -5px rgba(6, 182, 212, 0.45);
+      filter: brightness(1.08);
+    }
+
+    footer {
+      margin-top: 36px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(148, 163, 184, 0.15);
+      font-size: 0.88rem;
+      color: #64748b;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="badge">
+      <span class="status-dot"></span>
+      CONTENEDOR ACTIVO • PUERTO 8080:80
+    </div>
+
+    <div class="header-group">
+      <div class="icon">🐳</div>
+      <div>
+        <h1>Oscar Olivares</h1>
+        <div class="subtitle">Ingeniería en Desarrollo de Software • UNIVO</div>
+      </div>
+    </div>
+
+    <p>
+      Bienvenido a mi landing page personal. Esta aplicación web estática se encuentra 
+      desplegada dentro de un contenedor <strong>Docker</strong> ejecutando el servidor 
+      <strong>Nginx</strong>, mediante un volumen enlazado directamente desde el entorno local.
+    </p>
+
+    <div class="tech-stack">
+      <span class="tech-pill">Docker Engine</span>
+      <span class="tech-pill">Nginx Alpine/Latest</span>
+      <span class="tech-pill">HTML5 & CSS3</span>
+      <span class="tech-pill">Bind Mount</span>
+    </div>
+
+    <div class="actions">
+      <a class="button" href="" target="_blank">
+        Ver repositorio en GitHub →
+      </a>
+    </div>
+
+    <footer>
+      <span>Laboratorio III — Sistemas Operativos</span>
+      <span>2026</span>
+    </footer>
+  </main>
+</body>
+</html>
